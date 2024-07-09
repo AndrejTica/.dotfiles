@@ -1,4 +1,5 @@
 TODO:
+
     - Volume information in the dwm status bar.
 
     - Multimedia keys should be handled by dwm.
