@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+#BEGIN block executes only ones at the start
+#FS stands for the delimiter variable
+#in this case a regex saying two or more whitespaces as delimiter
+#the start is a regex that says take the char before me and any number of that
+wifi_list=$(nmcli device wifi list | awk 'BEGIN{FS="   *"}{printf "%s, %s\n", $3, $7}')
+choice=$(printf "${wifi_list[@]}" | dmenu -c -i -l 25 -p "Choose wifi")
+wifi_name=$(printf "$choice" | awk -F ',' '{print $1}')
+#dmenu needs some input and with ":" we achieve no input
+password=$(:| dmenu -p "Enter password")
+nmcli device wifi connect "$wifi_name" password $password 
+
+

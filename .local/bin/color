@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+declare -a options=(
+"hex , xcolor -f hex"
+"rgb , xcolor -f rgb"
+"quit"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -c -i -l 5 -p "Pick format")
+
+
+if [[ "$choice" == "quit" ]]; then
+	echo "Program terminated." && exit 1
+
+elif [ "$choice" ]; then
+	cfg=$(printf '%s\n' "${choice}" | awk -F, '{print $NF}')
+	color_code=$($cfg)
+	printf "$color_code" | xclip -sel clip
+else
+	echo "Program terminated." && exit 1
+fi

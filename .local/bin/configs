@@ -1,0 +1,38 @@
+#!/bin/bash
+
+
+#declare an array '-a' with the name options
+declare -a options=(
+"nvim -cd ~/.config/nvim"
+"alacritty -nvim $HOME/.config/alacritty/alacritty.toml"
+"zsh -nvim $HOME/.zshrc"
+"bash -nvim $HOME/.bashrc"
+"git -nvim $HOME/.gitconfig"
+"yazi -nvim $HOME/.config/yazi/yazi.toml"
+"tmux -nvim $HOME/.tmux.conf"
+"xinit -nvim $HOME/.xinitrc"
+"xbindkeys -nvim $HOME/.xbindkeysrc"
+"vim -nvim $HOME/.vimrc"
+"quit"
+)
+
+#piping the above options into dmenu
+#we use 'printf '%s\n' to format the array one item per line
+
+#the ${options[@]} syntax resolves to all elements in the array
+#printf prints to the stdout with the format string
+#it gets piped into dmenu with following flags: case-insensetive search
+#						show max 20 lines
+#						promt 'edit config
+#the result of the whole command gets saved into the choice variable
+choice=$(printf '%s\n' "${options[@]}" | dmenu -c -i -l 20 -p 'Edit config:')
+
+if [[ "$choice" == "quit" ]]; then
+	echo "Program terminated." && exit 1
+
+elif [ "$choice" ]; then
+	cfg=$(printf '%s\n' "${choice}" | awk 'BEGIN{ FS="-" } {print $NF}')
+	tmux split-window -h $cfg
+else
+	echo "Program terminated." && exit 1
+fi

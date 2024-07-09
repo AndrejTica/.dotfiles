@@ -1,0 +1,10 @@
+[Default Applications]
+x-scheme-handler/postman=Postman.desktop
+image/jpeg=pinta.desktop
+image/png=pinta.desktop
+image/gif=pinta.desktop
+image/bmp=pinta.desktop
+text/html=chromium.desktop
+
+[Added Associations]
+text/x-lua=nvim.desktop;
