@@ -1,0 +1,53 @@
+set number relativenumber
+set scrolloff=999
+set nowrap 
+set tabstop=4
+set shiftwidth=4
+set showmode
+set showcmd
+set visualbell
+set ignorecase
+set smartcase
+set setincsearch
+set hlsearch
+let mapleader = " "
+set clipboard=unnamedplus
+set clipboard+=ideaput
+nnoremap <leader>sv :vsplit<CR>
+nnoremap <leader>sh :split<CR>
+nnoremap <leader>l <C-w>l 
+nnoremap <leader>h <C-w>h 
+nnoremap <leader>k <C-w>k 
+nnoremap <s-TAB> :action PreviousTab<CR>
+nnoremap <TAB> :action NextTab<CR>
+
+vnoremap <leader>y "*y
+" vnoremap <leader>d "*d
+" nnoremap <leader>y "*yy
+" nnoremap <leader>p "*p
+" nnoremap <leader>P "*P
+" vnoremap <leader>p "*p
+" vnoremap <leader>P "*P
+set highlightedyank
+set NERDTree
+nnoremap <leader>n :NERDTree<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+nnoremap <leader>j :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>f :action ToggleDistractionFreeMode<CR>
+nnoremap <leader>b :JumpToLastWindow<CR>
+nnoremap <leader>ff :action SearchEverywhere<CR>
+nnoremap <C-n> :action EditorDown
+nnoremap <C-p> :action EditorUp
+nnoremap <leader>e :action RunAnything<CR>
+nnoremap gc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>
+
+nnoremap gd :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+
+let g:NERDTreeMapMenu='m'
+let g:NERDTreeMapQuit='n'
+
+Plug 'easymotion/vim-easymotion'
+map <leader>G <Plug>(easymotion-s)
+map <leader>g <Plug>(easymotion-f)
