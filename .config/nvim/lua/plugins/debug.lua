@@ -90,11 +90,11 @@ M.config = function()
             port = 8000;
         },
         {
-            name = "Debug Attach (5005)";
+            name = "Debug Attach (8001)";
             type = "java";
             request = "attach";
             hostName = "127.0.0.1";
-            port = 5005;
+            port = 8001;
         },
     }
 

@@ -25,5 +25,6 @@ require "core.commands"
 require "core.keymaps"
 require "core.misc"
 check_external_reqs()
+wsl_unnamedplus()
 -- wsl_unnamedplus()
 vim.cmd("set foldcolumn=0")

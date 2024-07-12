@@ -122,6 +122,15 @@ M.config = function()
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
+        tailwindcss = {
+            filetypes = { "html", "css" }, -- Only attach to HTML and CSS files
+            init_options = {
+                userLanguages = {
+                    html = "html",
+                    css = "css",
+                },
+            },
+        },
 
         lua_ls = {
             -- cmd = {...},
@@ -168,7 +177,9 @@ M.config = function()
         vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
     end
 
-
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "rounded",
+    })
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install
     --  other tools, you can run

@@ -97,6 +97,8 @@ local function lsp()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end, 'Toggle inline hints')
 
+  keymap('n', '<leader>k', vim.diagnostic.open_float, "Open diagnostic popup")
+
   keymap({ 'i', 's' }, '<C-L>', function()
     require('luasnip').jump(1)
   end, 'Jump to next snippet field')
