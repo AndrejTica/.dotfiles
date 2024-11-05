@@ -27,6 +27,7 @@ local function general()
   keymap('n', '<C-f>', ':!tmux neww tmux-sessionizer<CR>', 'New tmux session')
   keymap('n', '<C-h>', ':!tmux neww cheat-sheet<CR>', 'Open cht.sh')
   vim.keymap.set('n', 'x', '"_x')
+  keymap('n', '<leader>z', ':b#<CR>', "Go to prev open buffer")
 end
 
 local function telescope()
@@ -116,6 +117,7 @@ local function dap()
   keymap('n', '<F2>', dap.step_over, 'Debug: Step Over')
   keymap('n', '<F4>', dap.step_out, 'Debug: Step Out')
   keymap('n', '<leader>dc', dap.continue, 'Debug: Continue')
+  keymap('n', '<leader>dt', ":lua require('dapui').toggle()<CR>", 'Toggle dapui')
   vim.keymap.set('n', '<leader>db', function()
     local condition = vim.fn.input 'Optional condition: '
     if condition == nil then

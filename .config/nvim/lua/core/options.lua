@@ -31,7 +31,8 @@ local options = {
   hlsearch = true,
   breakindent = true,
   timeoutlen = 300,
-  -- colorcolumn = "90",
+  swapfile = false,
+  colorcolumn = "135",
 }
 
 for option, value in pairs(options) do

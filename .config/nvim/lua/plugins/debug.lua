@@ -74,6 +74,26 @@ M.config = function()
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- Function to set an exception breakpoint in nvim-dap
+    local function set_exception_breakpoint()
+        -- This is just a placeholder. You can adjust exception filters based on your debugger type.
+        -- Common exception types for debuggers might include "all", "uncaught", or specific exception names.
+        local exception_filter = vim.fn.input('Enter exception type (e.g., uncaught, all): ')
+        
+        -- Set the exception breakpoint using nvim-dap's set_exception_breakpoints API
+        dap.set_exception_breakpoints({ exception_filter })
+        
+        -- Inform the user
+        print('Set exception breakpoint for: ' .. exception_filter)
+    end
+
+    -- Create a Neovim command that calls the function
+    vim.api.nvim_create_user_command(
+        'SetExceptionBreakpoint',
+        set_exception_breakpoint,
+        { nargs = 0 }
+    )
+
     dap.configurations.java = {
         {
             name = "Debug Launch (2GB)";
