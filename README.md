@@ -40,4 +40,8 @@ TODO:
 
     - Password manager.
 
+    - Custom spring boot profile runner
+
+    - nvim autocmd for cmd typos
+
     
