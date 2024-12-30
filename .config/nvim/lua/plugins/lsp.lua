@@ -5,6 +5,7 @@ local M = { -- LSP Configuration & Plugins
         { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
         'williamboman/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
+        "b0o/schemastore.nvim",
 
         -- Useful status updates for LSP.
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -107,8 +108,16 @@ M.config = function()
             },
         },
 
+        lemminx = {
+            filetypes = { "xml" }
+        },
+
         eslint = {
-            filetypes = { "typescript", "javascript"}
+            filetypes = { "typescript", "javascript" }
+        },
+
+        terraformls = {
+            filetypes = { "terraform", "tf", "tfvars", "hcl" }
         },
 
         lua_ls = {
@@ -125,6 +134,27 @@ M.config = function()
                 },
             },
         },
+        yamlls = {
+            -- capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+            filetypes = { "yaml", "yml" },
+            settings = {
+                yaml = {
+                    hover = true,
+                    validate = true,
+                    completion = true,
+                    schemaStore = {
+                        enable = false,
+                        url = "",
+                    },
+                    schemas = require('schemastore').yaml.schemas(),
+                },
+            },
+        },
+        helm_ls = {
+            settings = {
+                yamlls = "yamlls"
+            }
+        }
     }
 
     local icons = require("plugins.icons")
@@ -185,6 +215,14 @@ M.config = function()
                     -- certain features of an LSP (for example, turning off formatting for tsserver)
                     server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
                     require('lspconfig')[server_name].setup(server)
+
+                    -- require('spring_boot').init_lsp_commands()
+                    -- require("lspconfig").jdtls.setup {
+                    --     init_options = {
+                    --         bundles = require("spring_boot").java_extensions(),
+                    --     },
+                    -- }
+                    -- require('spring_boot').init_lsp_commands()
                 end
             end,
         },

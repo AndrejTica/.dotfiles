@@ -52,7 +52,7 @@ M.config = function()
     --
     --
     defaults = {
-      -- layout_strategy = "center",
+      layout_strategy = "center",
       layout_config = { width = 0.9 },
 	  path_display={"smart"}, --TODO: for references as well
     },

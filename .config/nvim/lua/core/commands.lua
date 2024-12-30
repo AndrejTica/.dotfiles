@@ -22,15 +22,24 @@ vim.api.nvim_create_user_command("Restore", function()
   vim.api.nvim_exec([[:lua require('persistence').load()]], false)
 end, {})
 
+vim.api.nvim_create_user_command("SaveQuery", function()
+  vim.api.nvim_exec([[execute "normal \<Plug>(DBUI_SaveQuery)"]], false)
+end, {})
+
 local run_commands = {
   python = "python3 %",
   java = "java %",
-  sh = "./%"
+  sh = "./%",
+  sql = [[execute "normal \<Plug>(DBUI_ExecuteQuery)"]]
 }
 
 vim.api.nvim_create_user_command("Run", function()
   for file, command in pairs(run_commands) do
     if vim.bo.filetype == file then
+      if file == "sql" then
+        vim.cmd(command)
+        break
+      end
       vim.cmd("vsp | terminal " .. command)
       break
     end
@@ -88,3 +97,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", vim.cmd.close, { desc = "Close the current buffer", buffer = true })
   end,
 })
+
+vim.cmd([[cabbrev Wa wa]])
+vim.cmd([[cabbrev Wq wq]])
+vim.cmd([[cabbrev Wqa wqa]])

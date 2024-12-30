@@ -4,6 +4,7 @@ local M = {
   { 'windwp/nvim-autopairs', event = 'InsertEnter', config = true },
   { 'ggandor/leap.nvim' },
   { 'mbbill/undotree' },
+  { 'tpope/vim-dotenv' },
   {'eandrju/cellular-automaton.nvim'},
   {
     'kevinhwang91/nvim-ufo',

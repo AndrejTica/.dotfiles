@@ -98,7 +98,7 @@ local function lsp()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end, 'Toggle inline hints')
 
-  keymap('n', '<leader>k', vim.diagnostic.open_float, "Open diagnostic popup")
+  keymap('n', '<C-k>', vim.diagnostic.open_float, "Open diagnostic popup")
 
   keymap({ 'i', 's' }, '<C-L>', function()
     require('luasnip').jump(1)
@@ -143,10 +143,6 @@ local function leap()
   keymap('n', '<leader>B', '<Plug>(leap-backward)', 'Leap backwards')
 end
 
-local function trouble()
-  keymap('n', '<leader>t', ':Trouble<CR>', 'Open Trouble')
-end
-
 local function java()
   keymap('n', '<leader>tc', function()
     if vim.bo.filetype == 'java' then
@@ -172,6 +168,5 @@ aerial()
 dap()
 git()
 leap()
-trouble()
 lol()
 java()

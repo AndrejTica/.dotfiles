@@ -107,11 +107,20 @@ M.config = function()
       --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
     },
     sources = {
+      { name = 'vim-dadbod-completion' },
       { name = 'nvim_lsp' },
       { name = 'path' },
+      { name = 'calc' },
+      { name = 'tmux' },
       { name = 'luasnip' },
     },
   }
+  cmp.setup.filetype({ "sql" }, {
+    sources = {
+      { name = 'vim-dadbod-completion' },
+      { name = 'buffer' }
+    },
+  })
   vim.cmd("highlight FloatBorder guibg=NONE")
 end
 
