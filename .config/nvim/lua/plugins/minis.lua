@@ -1,18 +1,19 @@
 local M = {
   { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-  { 'windwp/nvim-autopairs', event = 'InsertEnter', config = true },
+  { 'folke/todo-comments.nvim',       event = 'VimEnter',    dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { 'windwp/nvim-autopairs',          event = 'InsertEnter', config = true },
   { 'ggandor/leap.nvim' },
+  { 'taybart/b64.nvim' },
   { 'mbbill/undotree' },
   { 'tpope/vim-dotenv' },
-  {'eandrju/cellular-automaton.nvim'},
+  { 'eandrju/cellular-automaton.nvim' },
   {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
     config = function()
       local ufo = require 'ufo'
       vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       --za to toggle folds

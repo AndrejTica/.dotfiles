@@ -10,8 +10,8 @@ diff then also takes in as arg the current file path since % is the register tha
 end, {})
 
 vim.api.nvim_create_user_command("Openconfig", function()
-    local builtin = require 'telescope.builtin'
-    builtin.find_files { cwd = vim.fn.stdpath 'config' }
+  local builtin = require 'telescope.builtin'
+  builtin.find_files { cwd = vim.fn.stdpath 'config' }
 end, {})
 
 vim.api.nvim_create_user_command("Openhtml", function()
@@ -30,14 +30,17 @@ local run_commands = {
   python = "python3 %",
   java = "java %",
   sh = "./%",
-  sql = [[execute "normal \<Plug>(DBUI_ExecuteQuery)"]]
+  sql = function()
+    vim.cmd([[normal! vip]])
+    vim.cmd([[execute "normal \<Plug>(DBUI_ExecuteQuery)"]])
+  end,
 }
 
 vim.api.nvim_create_user_command("Run", function()
   for file, command in pairs(run_commands) do
     if vim.bo.filetype == file then
-      if file == "sql" then
-        vim.cmd(command)
+      if file == "sql" or file =="plsql" then
+        command()
         break
       end
       vim.cmd("vsp | terminal " .. command)
@@ -101,3 +104,5 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.cmd([[cabbrev Wa wa]])
 vim.cmd([[cabbrev Wq wq]])
 vim.cmd([[cabbrev Wqa wqa]])
+vim.cmd([[cabbrev Q q]])
+vim.cmd([[cabbrev Qa qa]])

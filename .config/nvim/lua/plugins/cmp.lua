@@ -107,7 +107,6 @@ M.config = function()
       --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
     },
     sources = {
-      { name = 'vim-dadbod-completion' },
       { name = 'nvim_lsp' },
       { name = 'path' },
       { name = 'calc' },
@@ -116,6 +115,12 @@ M.config = function()
     },
   }
   cmp.setup.filetype({ "sql" }, {
+    sources = {
+      { name = 'vim-dadbod-completion' },
+      { name = 'buffer' }
+    },
+  })
+  cmp.setup.filetype({ "plsql" }, {
     sources = {
       { name = 'vim-dadbod-completion' },
       { name = 'buffer' }

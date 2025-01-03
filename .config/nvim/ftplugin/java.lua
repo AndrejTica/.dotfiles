@@ -14,7 +14,7 @@ vim.list_extend(bundles,
   vim.split(vim.fn.glob(vim.env.HOME .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n"))
 -- Add spring-boot jdtls extension jar files
 
-vim.list_extend(bundles, require("spring_boot").java_extensions())
+-- vim.list_extend(bundles, require("spring_boot").java_extensions())
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   -- The command that starts the language server
