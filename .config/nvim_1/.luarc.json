@@ -1,0 +1,6 @@
+{
+  "workspace.library": ["~/.config/nvim/lua"],
+  "runtime.version": "LuaJIT",
+  "hint.enable": true,
+  "diagnostics.globals": ["vim"]
+}
