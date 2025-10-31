@@ -38,7 +38,10 @@ local run_commands = {
   sh = "./%",
   sql = function()
     vim.cmd([[normal! vip]])
-    vim.cmd([[execute "normal \<Plug>(DBUI_ExecuteQuery)"]])
+  	vim.schedule(function()
+    local plug = vim.api.nvim_replace_termcodes("<Plug>(DBUI_ExecuteQuery)", true, false, true)
+    vim.api.nvim_feedkeys(plug, "n", false)
+	end)
   end,
 }
 

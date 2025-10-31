@@ -23,6 +23,8 @@ require('plugins.debug_config')
 require('plugins.debug_ui')
 require('plugins.yazi_config')
 require('plugins.indent')
+require('plugins.dadbod_config')
+require('plugins.dotenv')
 
 
 
