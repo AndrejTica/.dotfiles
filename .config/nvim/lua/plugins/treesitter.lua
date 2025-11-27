@@ -4,7 +4,18 @@ vim.pack.add({
 
 
 require("nvim-treesitter.configs").setup({
-    ensure_installed = { 'bash', 'c', 'python', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'java'},
+    ensure_installed = { 'bash',
+		'c',
+		'python',
+		'diff',
+		'html',
+		'lua',
+		'luadoc',
+		'markdown',
+		'vim',
+		'vimdoc',
+		'java',
+		'latex'},
     -- Autoinstall languages that are not installed
     auto_install = true,
     highlight = {

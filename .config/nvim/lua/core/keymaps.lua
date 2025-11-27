@@ -19,3 +19,5 @@ keymap('n', 'x', '"_x', 'x does not override yanked buffer')
 keymap('n', 'dd', '"_dd', 'dd to black hole register')
 keymap('n', '<leader>b', ':Lexplore<CR>', 'Open netrw')
 keymap('n', '<leader>z', ':b#<CR>', 'Go to prev open buffer')
+keymap('x', '<leader>e', ':RunCommand<CR>', 'Run the command in buffer')
+

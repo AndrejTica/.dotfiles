@@ -25,6 +25,7 @@ require('plugins.yazi_config')
 require('plugins.indent')
 require('plugins.dadbod_config')
 require('plugins.dotenv')
+require('plugins.vivify')
 
 
 

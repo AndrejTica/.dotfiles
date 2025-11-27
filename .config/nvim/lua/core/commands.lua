@@ -10,6 +10,20 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 
+local function get_visual_selection()
+  local s = vim.fn.getpos("'<")[2]
+  local e = vim.fn.getpos("'>")[2]
+  local lines = vim.fn.getline(s, e)
+  return table.concat(lines, "\n")
+end
+
+vim.api.nvim_create_user_command("RunCommand", function()
+  local cmd = get_visual_selection()
+  vim.cmd("vsplit | terminal")
+  vim.fn.chansend(vim.b.terminal_job_id, cmd .. "\n")
+end, {range = true})
+
+
 vim.api.nvim_create_user_command("Openconfig", function()
   local builtin = require 'fzf-lua'
   builtin.files { cwd = vim.fn.stdpath 'config' }
@@ -99,6 +113,7 @@ vim.api.nvim_create_autocmd("FileType", {                     -- Define an autoc
     end, { buffer = buf })                                    -- Make the mapping buffer-local to the netrw buffer
   end,                                                        -- End of callback
 })                                                            -- End of autocmd definition
+
 
 
 vim.cmd([[cabbrev Wa wa]])

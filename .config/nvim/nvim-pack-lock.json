@@ -94,6 +94,10 @@
       "rev": "61b51c0",
       "src": "https://github.com/tpope/vim-fugitive"
     },
+    "vivify.vim": {
+      "rev": "99a1539",
+      "src": "https://github.com/jannis-baum/vivify.vim"
+    },
     "yazi.nvim": {
       "rev": "47e83f0",
       "src": "https://github.com/mikavilpas/yazi.nvim"
