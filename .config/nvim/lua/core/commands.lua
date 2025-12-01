@@ -10,6 +10,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 
+-- Enable spell checking for text and markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "text", "markdown" },
+  callback = function()
+    vim.opt_local.spell = true
+
+ 	vim.opt_local.textwidth = 80
+    -- draw a vertical line at the textwidth column
+    vim.opt_local.colorcolumn = tostring(vim.opt_local.textwidth:get())
+  end,
+})
+
+
 local function get_visual_selection()
   local s = vim.fn.getpos("'<")[2]
   local e = vim.fn.getpos("'>")[2]
