@@ -94,6 +94,10 @@
       "rev": "61b51c0",
       "src": "https://github.com/tpope/vim-fugitive"
     },
+    "vimtex": {
+      "rev": "32bcb392",
+      "src": "https://github.com/lervag/vimtex"
+    },
     "vivify.vim": {
       "rev": "99a1539",
       "src": "https://github.com/jannis-baum/vivify.vim"

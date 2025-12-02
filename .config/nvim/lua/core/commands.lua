@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
-
 -- Enable spell checking for text and markdown files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "text", "markdown" },
@@ -22,18 +21,31 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-
+-- Define a helper function that returns the visually selected text as one string
 local function get_visual_selection()
-  local s = vim.fn.getpos("'<")[2]
-  local e = vim.fn.getpos("'>")[2]
-  local lines = vim.fn.getline(s, e)
-  return table.concat(lines, "\n")
+  local s = vim.fn.getpos("'<")[2]           -- get the start line number of the visual selection (mark '<)
+  local e = vim.fn.getpos("'>")[2]           -- get the end line number of the visual selection (mark '>)
+
+  local lines = vim.fn.getline(s, e)         -- get all lines between start and end (inclusive)
+  return table.concat(lines, "\n")           -- join the lines into a single string separated by newlines
 end
 
 vim.api.nvim_create_user_command("RunCommand", function()
-  local cmd = get_visual_selection()
-  vim.cmd("vsplit | terminal")
-  vim.fn.chansend(vim.b.terminal_job_id, cmd .. "\n")
+  local cmd = get_visual_selection()         
+
+  vim.cmd("vsplit | terminal")               
+
+  local term_buf = vim.api.nvim_get_current_buf()  
+
+  vim.fn.chansend(vim.b.terminal_job_id, cmd .. "\n") -- send the selected text as a command to the terminal (plus Enter)
+
+  vim.api.nvim_buf_set_keymap(              -- define a buffer-local keymap for this terminal buffer
+    term_buf,
+    "t",
+    "q",
+    [[<C-\><C-n>:close<CR>]],               -- leave terminal mode, then run :close to close the split
+    { noremap = true, silent = true }       -- do not remap "q" further, and do not show command messages
+  )
 end, {range = true})
 
 
@@ -99,6 +111,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "qf",
     "query",
     "oil",
+	"terminal"
     --trouble
   },
   callback = function()

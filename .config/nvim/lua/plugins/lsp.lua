@@ -2,8 +2,8 @@ vim.lsp.enable({
 	"lua_ls",
 	"basedpyright",
 	"jdtls",
-	"sqls"
-
+	"sqls",
+	"harper_ls"
 })
 
 vim.pack.add({ "https://github.com/SmiteshP/nvim-navic" })
