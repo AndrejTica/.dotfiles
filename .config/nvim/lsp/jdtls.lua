@@ -1,7 +1,10 @@
 
 local bundles = {
-  vim.fn.glob("/home/andrej/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin-0.53.2.jar", 1)
+  vim.fn.glob("/home/andrej/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar")
 }
+
+vim.list_extend(bundles,
+  vim.split(vim.fn.glob(vim.env.HOME .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n"))
 
 return {
 
@@ -59,10 +62,11 @@ return {
 	init_options = {
 		bundles = bundles
 	},
-	-- on_attach = function()
-	-- 	local jdtls = require('jdtls')
-	-- 	jdtls.setup_dap({ hotcodereplace = 'auto' })
-	-- 	require('jdtls.dap').setup_dap_main_class_configs()
-	-- end
+	on_attach =  function(client, bufnr)
+    require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+    require('jdtls.dap').setup_dap_main_class_configs()
+end
 
 }
+
+-- This starts a new client & server, or attaches to an existing client & server based on the `root_dir`.

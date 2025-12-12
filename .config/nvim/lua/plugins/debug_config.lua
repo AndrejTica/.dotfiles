@@ -1,4 +1,5 @@
 vim.pack.add({ "https://github.com/mfussenegger/nvim-dap" })
+vim.pack.add({"https://codeberg.org/mfussenegger/nvim-dap-python"})
 
 
 local dap = require 'dap'
@@ -17,26 +18,30 @@ vim.keymap.set('n', '<leader>db', function()
 end, { desc = 'Debug: Toggle breakpoint' })
 
 
--- dap.configurations.java = {
--- 	{
--- 		name = "Debug Launch (2GB)",
--- 		type = "java",
--- 		request = "launch",
--- 		vmArgs = "--enable-preview " ..
--- 			"-Xmx2g "
--- 	},
--- 	{
--- 		name = "Debug Attach (8000)",
--- 		type = "java",
--- 		request = "attach",
--- 		hostName = "127.0.0.1",
--- 		port = 8000,
--- 	},
--- 	{
--- 		name = "Debug Attach (8001)",
--- 		type = "java",
--- 		request = "attach",
--- 		hostName = "127.0.0.1",
--- 		port = 8001,
--- 	},
--- }
+require("dap-python").setup("python3")
+-- install debugpy first with: 'python3 -m pip install debugpy'
+--
+dap.configurations.java = {
+        {
+            name = "Debug Launch (2GB)";
+            type = "java";
+            request = "launch";
+            vmArgs = "--enable-preview " ..
+                "-Xmx2g "
+        },
+        {
+            name = "Debug Attach (8000)";
+            type = "java";
+            request = "attach";
+            hostName = "127.0.0.1";
+            port = 8000;
+        },
+        {
+            name = "Debug Attach (8001)";
+            type = "java";
+            request = "attach";
+            hostName = "127.0.0.1";
+            port = 8001;
+        },
+    }
+

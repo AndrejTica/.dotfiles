@@ -45,6 +45,10 @@
       "rev": "6782b09",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
+    "nvim-dap-python": {
+      "rev": "64652d1",
+      "src": "https://codeberg.org/mfussenegger/nvim-dap-python"
+    },
     "nvim-dap-view": {
       "rev": "76f219c",
       "src": "https://github.com/igorlfs/nvim-dap-view"

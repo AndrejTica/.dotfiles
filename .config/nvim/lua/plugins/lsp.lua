@@ -6,6 +6,7 @@ vim.lsp.enable({
 	"harper_ls"
 })
 
+
 vim.pack.add({ "https://github.com/SmiteshP/nvim-navic" })
 vim.pack.add({ "https://github.com/j-hui/fidget.nvim" })
 
