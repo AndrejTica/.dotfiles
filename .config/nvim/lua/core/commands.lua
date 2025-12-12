@@ -71,6 +71,26 @@ vim.api.nvim_create_user_command("SaveQuery", function()
 end, {})
 
 
+vim.api.nvim_create_user_command("PackDump", function()
+  -- Get pretty-printed string of the pack table
+  local text = vim.inspect(vim.pack.get())
+  -- Split it into lines
+  local lines = vim.split(text, "\n")
+
+  -- Open a new scratch window/buffer
+  vim.cmd("new")
+  local buf = vim.api.nvim_get_current_buf()
+
+  -- Make it a scratch buffer
+  vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "wipe"
+  vim.bo[buf].swapfile = false
+
+  -- Write lines into the buffer
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+end, {})
+
+
 local run_commands = {
   python = "python3 %",
   java = "java %",
@@ -83,6 +103,21 @@ local run_commands = {
 	end)
   end,
 }
+
+local format_commands = {
+	python = "! ruff format %",
+	lua = "! stylua %"
+}
+
+
+vim.api.nvim_create_user_command("Format", function()
+  for file, command in pairs(format_commands) do
+    if vim.bo.filetype == file then
+      vim.cmd(command)
+      break
+    end
+  end
+end, {})
 
 
 vim.api.nvim_create_user_command("Run", function()

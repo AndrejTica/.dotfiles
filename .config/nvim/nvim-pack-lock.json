@@ -5,10 +5,6 @@
       "src": "https://github.com/Saghen/blink.cmp",
       "version": "'v1.7.0'"
     },
-    "conform.nvim": {
-      "rev": "9fd3d5e",
-      "src": "https://github.com/stevearc/conform.nvim"
-    },
     "fidget.nvim": {
       "rev": "3f54759",
       "src": "https://github.com/j-hui/fidget.nvim"
@@ -56,6 +52,10 @@
     "nvim-jdtls": {
       "rev": "380ac14",
       "src": "https://github.com/mfussenegger/nvim-jdtls"
+    },
+    "nvim-lint": {
+      "rev": "897f777",
+      "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-navic": {
       "rev": "099b4c8",
