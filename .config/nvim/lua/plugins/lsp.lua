@@ -3,8 +3,7 @@ vim.lsp.enable({
 	"basedpyright",
 	"jdtls",
 	"sqls",
-	"harper_ls",
-	"robotframework_ls"
+	"harper_ls"
 })
 
 

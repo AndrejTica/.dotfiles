@@ -14,8 +14,8 @@ require("nvim-treesitter.configs").setup({
 		'markdown',
 		'vim',
 		'vimdoc',
-		'java',
-		'latex'},
+		'java'
+		},
     -- Autoinstall languages that are not installed
     auto_install = true,
     highlight = {

@@ -16,7 +16,7 @@ return {
 		"jdtls",
 
 		-- depends on if `java` is in your $PATH env variable and if it points to the right version.
-		"/usr/lib/jvm/java-21-openjdk/bin/java",
+		"/home/andrej/.jdks/openjdk-25.0.1/bin/java",
 
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
@@ -32,7 +32,7 @@ return {
 
 		-- 💀
 		"-jar",
-		"/home/andrej/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250519-0528.jar",
+		"/home/andrej/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar",
 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
 		-- Must point to the                                                     Change this to
 		-- eclipse.jdt.ls installation                                           the actual version
