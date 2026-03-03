@@ -27,6 +27,7 @@ require('plugins.dotenv')
 require('plugins.vivify')
 require('plugins.vimtex')
 require('plugins.lint')
+require('plugins.java_creator')
 
 
 
