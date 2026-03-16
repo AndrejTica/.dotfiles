@@ -30,10 +30,6 @@ local function get_visual_selection()
   return table.concat(lines, "\n")           -- join the lines into a single string separated by newlines
 end
 
-vim.api.nvim_create_user_command("Cheat", function ()
-	vim.cmd("!cheat")
-end, {})
-
 vim.api.nvim_create_user_command("RunCommand", function()
   local cmd = get_visual_selection()         
 

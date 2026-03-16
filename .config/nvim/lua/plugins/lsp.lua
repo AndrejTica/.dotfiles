@@ -3,7 +3,8 @@ vim.lsp.enable({
 	"basedpyright",
 	"jdtls",
 	"sqls",
-	"harper_ls"
+	"harper_ls",
+	"marksman"
 })
 
 
@@ -50,8 +51,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 	callback = function(event)
 		require("nvim-navic")
-
-		keymap("n", "ic", require("fzf-lua").lsp_incoming_calls, "Show incomming calls")
 
 		keymap("n", "gd", require("fzf-lua").lsp_definitions, "[G]oto [D]efinition")
 

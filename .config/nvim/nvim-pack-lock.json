@@ -33,9 +33,9 @@
       "rev": "3946f01",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "mason.nvim": {
-      "rev": "ad7146a",
-      "src": "https://github.com/mason-org/mason.nvim"
+    "neoscroll.nvim": {
+      "rev": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8",
+      "src": "https://github.com/karb94/neoscroll.nvim"
     },
     "nvim-autopairs": {
       "rev": "7a2c97c",
