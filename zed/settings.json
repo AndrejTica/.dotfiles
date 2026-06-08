@@ -9,6 +9,13 @@
 {
     // Whether to colorize matching brackets (rainbow brackets)
     // https://zed.dev/docs/reference/all-settings#colorize-brackets
+    "auto_install_extensions": {
+        "html": true,
+        "Java": true,
+        "XML": true,
+        "TOML": true,
+        "Dockerfile": true,
+    },
     "icon_theme": "Colored Zed Icons Theme Dark",
     "colorize_brackets": true,
     "autosave": "on_window_change",
