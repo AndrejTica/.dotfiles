@@ -1,4 +1,3 @@
-
 // Zed settings
 //
 // For information on how to configure Zed, see the Zed
@@ -12,6 +11,8 @@
     // https://zed.dev/docs/reference/all-settings#colorize-brackets
     "icon_theme": "Colored Zed Icons Theme Dark",
     "colorize_brackets": true,
+    "autosave": "on_window_change",
+    "toolbar": { "quick_actions": false },
 
     // Whether and how to display code lenses from language servers
     // https://zed.dev/docs/reference/all-settings#code-lens
@@ -36,7 +37,7 @@
         },
     },
     "tab_bar": {
-        "show": true,
+        "show": false,
     },
     "tabs": {
         "show_diagnostics": "errors",
@@ -74,3 +75,4 @@
     },
     "tab_size": 4,
 }
+
