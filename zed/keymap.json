@@ -24,6 +24,7 @@
             "space p f": "projects::OpenRecent", // <leader>pf switch project
             "space c a": "editor::ToggleCodeActions", // <leader>ca code actions
             "space c r": "editor::Rename", // <leader>cr LSP rename
+            "space r": "editor::SpawnNearestTask", // <leader>cr LSP rename
             "ctrl-w o": "workspace::CloseAllDocks", // <leader>cr LSP rename
         },
     },
