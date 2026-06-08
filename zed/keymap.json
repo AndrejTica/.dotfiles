@@ -1,0 +1,100 @@
+
+// keymap.json — minimal: only the requested remaps. Everything else falls back to Zed defaults.
+[
+    {
+        "context": "Dock",
+        "bindings": {
+            "ctrl-w h": "workspace::ActivatePaneLeft",
+            "ctrl-w l": "workspace::ActivatePaneRight",
+            "ctrl-w k": "workspace::ActivatePaneUp",
+            "ctrl-w j": "workspace::ActivatePaneDown",
+            "ctrl-w c": "workspace::CloseActiveDock",
+            // ... or other keybindings
+        },
+    },
+    // ---- Leader bindings (normal & visual) ----
+    {
+        "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+        "bindings": {
+            "space n": "project_panel::ToggleFocus", // <leader>n  open/focus file tree
+            "space b": "tab_switcher::Toggle", // <leader>b  open buffer (tab) switcher
+            "space t": "terminal_panel::ToggleFocus", // <leader>t  toggle terminal panel
+            "space f f": "file_finder::Toggle", // <leader>ff find file in project
+            "space f g": "pane::DeploySearch", // <leader>fg grep string in project
+            "space p f": "projects::OpenRecent", // <leader>pf switch project
+            "space c a": "editor::ToggleCodeActions", // <leader>ca code actions
+            "space c r": "editor::Rename", // <leader>cr LSP rename
+            "ctrl-w o": "workspace::CloseAllDocks", // <leader>cr LSP rename
+        },
+    },
+
+    // ---- Normal-mode-only bindings ----
+    {
+        "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+        "bindings": {
+            "g d": "editor::GoToDefinition", // gd  go to definition
+            "g I": "editor::GoToImplementation", // gI  go to implementation
+            "g r": "editor::FindAllReferences", // gr  show references
+            // <leader>z -> :b# (alternate/previous buffer). Zed has no native :b#,
+            // so this opens the MRU tab switcher and confirms the last-used tab.
+            "space z": ["workspace::SendKeystrokes", "ctrl-tab enter"],
+            // AI agent panel
+            "space m": "agent::ToggleFocus", // <leader>m  open/focus AI chat
+            // Git hunks
+            "space g p": "editor::ToggleSelectedDiffHunks", // <leader>gp preview hunk diff
+            "space g r": "git::Restore", // <leader>gr revert hunk
+            // x always deletes into the black hole register (does not clobber yanks).
+            "x": ["workspace::SendKeystrokes", "\" _ x"],
+            // Center the view after search-match and word jumps.
+            "n": ["workspace::SendKeystrokes", "n z z"],
+            "shift-n": ["workspace::SendKeystrokes", "shift-n z z"],
+            "*": ["workspace::SendKeystrokes", "* z z"],
+            "#": ["workspace::SendKeystrokes", "# z z"],
+        },
+    },
+
+    // ---- Visual-mode-only bindings ----
+    {
+        "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+        "bindings": {
+            // Paste over selection without clobbering the yanked text ("_dP).
+            "p": ["workspace::SendKeystrokes", "\" _ d shift-p"],
+            // Stay in visual mode after indenting.
+            "<": ["workspace::SendKeystrokes", "< g v"],
+            ">": ["workspace::SendKeystrokes", "> g v"],
+        },
+    },
+
+    // ---- Terminal: tmux-style window management (ctrl-b prefix) + history nav ----
+    {
+        "context": "Terminal",
+        "bindings": {
+            "ctrl-p": ["terminal::SendKeystroke", "up"], // ctrl-p = previous command (like Up)
+            "ctrl-b c": "workspace::NewTerminal", // new window (tmux: c)
+            "ctrl-b n": "pane::ActivateNextItem", // next window (tmux: n)
+            "ctrl-b p": "pane::ActivatePreviousItem", // previous window (tmux: p)
+            "ctrl-b x": "pane::CloseActiveItem", // kill window (tmux: x / &)
+            "ctrl-b 1": ["pane::ActivateItem", 0], // jump to window 1..5 (tmux: 0-9)
+            "ctrl-b 2": ["pane::ActivateItem", 1],
+            "ctrl-b 3": ["pane::ActivateItem", 2],
+            "ctrl-b 4": ["pane::ActivateItem", 3],
+            "ctrl-b 5": ["pane::ActivateItem", 4],
+        },
+    },
+
+    // ---- Dock bindings (when focus is in a left/right/bottom dock) ----
+    {
+        "context": "Dock",
+        "bindings": {
+            "ctrl-w c": "workspace::CloseActiveDock", // close whichever dock is focused
+        },
+    },
+
+    // ---- Leader infrastructure: make bare <space> a no-op so it works as leader ----
+    {
+        "context": "VimControl && !menu",
+        "bindings": {
+            "space": null,
+        },
+    },
+]
