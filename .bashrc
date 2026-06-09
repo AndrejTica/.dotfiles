@@ -70,5 +70,8 @@ PS1='\[\e[32m\]\u\[\e[0m\]:\[\e[34m\]\W\[\e[33m\]$(parse_git_branch)\[\e[0m\]\$ 
 # COMPLETION
 # ============================================================
 # Bash completion is essential; some distros include it, but ensure it's on.
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
 [[ -f /usr/share/bash-completion/bash_completion ]] && \
     source /usr/share/bash-completion/bash_completion
