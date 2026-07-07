@@ -37,7 +37,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export MANPAGER='nvim +Man!'        # readable man pages in nvim
 export PATH="$HOME/.local/bin:$PATH"
-
+export PYTHONPATH="$HOME/Workspace/automation-test-cases/automation-infrastructure:$HOME/Workspace/automation-test-cases:$HOME/Workspace/automation-test-cases/resources:$HOME/Workspace/automation-test-cases/automation-infrastructure/libraries:$HOME/Workspace/automation-test-cases/automation-infrastructure/core${PYTHONPATH:+:$PYTHONPATH}"
 # ============================================================
 # COLORS & LISTING
 # ============================================================
@@ -45,6 +45,12 @@ alias ls='ls -lah --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip --color=auto'
+alias v='nvim'
+
+# Run the sessionizer (create-or-switch) on Ctrl+J
+bind '"\C-j": "tmux-sessionizer\r"'
+# Switch to an already-open session on Ctrl+H
+bind '"\C-h": "tmux-sessionizer-opened\r"'
 
 # Quick directory navigation
 alias ..='cd ..'
@@ -55,6 +61,8 @@ alias ....='cd ../../..'
 alias gs='git status'
 alias gd='git diff'
 alias gl='git log --oneline --graph --decorate -20'
+alias note='v /mnt/c/Users/SYX50S9/Documents/work/work_notes/work_good_to_know.txt'
+alias kuerzel='v /mnt/c/Users/SYX50S9/Documents/work/kuerzel.txt'
 
 # ============================================================
 # PROMPT — minimal but informative
@@ -71,7 +79,16 @@ PS1='\[\e[32m\]\u\[\e[0m\]:\[\e[34m\]\W\[\e[33m\]$(parse_git_branch)\[\e[0m\]\$ 
 # ============================================================
 # Bash completion is essential; some distros include it, but ensure it's on.
 # Set up fzf key bindings and fuzzy completion
-eval "$(fzf --bash)"
+# eval "$(fzf --bash)"
 
-[[ -f /usr/share/bash-completion/bash_completion ]] && \
-    source /usr/share/bash-completion/bash_completion
+# [[ -f /usr/share/bash-completion/bash_completion ]] && \
+#     source /usr/share/bash-completion/bash_completion
+
+
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash

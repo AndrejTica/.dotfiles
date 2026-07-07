@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# tmux-switch — fuzzy-pick an EXISTING tmux session and switch/attach to it.
+# Complements tmux-sessionizer: that one creates sessions from directories,
+# this one only lists sessions you've ALREADY opened.
+
+set -euo pipefail
+
+# Bail early if there's no tmux server / no sessions at all.
+if ! tmux list-sessions &>/dev/null; then
+	echo "No tmux sessions running." >&2
+	exit 1
+fi
+
+# If we're inside tmux, note the current session so we can hide it from the list
+# (no point in "switching" to the one you're already in).
+current=""
+[[ -n "${TMUX:-}" ]] && current=$(tmux display-message -p '#{session_name}')
+
+# List sessions as:  name <TAB> N win <TAB> (attached)
+list=$(tmux list-sessions \
+	-F '#{session_name}	#{session_windows} win	#{?session_attached,(attached),}')
+
+# Drop the current session from the choices.
+if [[ -n "$current" ]]; then
+	list=$(printf '%s\n' "$list" | awk -F'\t' -v c="$current" '$1 != c')
+fi
+
+[[ -n "$list" ]] || { echo "No other sessions to switch to." >&2; exit 0; }
+
+# Fuzzy-pick (fuzzy-match on the name, but show the window count / attached flag).
+choice=$(printf '%s\n' "$list" \
+	| fzf --delimiter='\t' --nth=1 --with-nth=1,2,3 \
+	      --prompt='switch ❯ ' --height=40% --reverse) || exit 0
+
+[[ -n "$choice" ]] || exit 0
+
+session_name=$(printf '%s' "$choice" | cut -f1)
+
+# switch-client works inside tmux; attach-session is the right call from outside.
+if [[ -n "${TMUX:-}" ]]; then
+	tmux switch-client -t "$session_name"
+else
+	tmux attach-session -t "$session_name"
+fi
