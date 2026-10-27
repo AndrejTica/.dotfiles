@@ -1,32 +1,22 @@
-vim.pack.add({"https://github.com/nvim-tree/nvim-web-devicons"})
-vim.pack.add({"https://github.com/nvim-lua/plenary.nvim"})
+local modules = {
+    "config.options",
+    "config.keymaps",
+    "config.autocmds",
+    "config.commands",
+    "config.plugins",
+    "config.formatting",
+    "config.treesitter",
+    "config.notes",
+    "config.ui",
+    "config.completion",
+    "config.lsp",
+    "config.debugging",
+    "config.robot",
+}
 
-require('core.options')
-require('core.commands')
-require('core.keymaps')
-
-require('plugins.colorscheme')
-require('plugins.treesitter')
-require('plugins.treesitter_text')
-require('plugins.fzf')
-require('plugins.lualine_config')
-require('plugins.lsp')
-require('plugins.terminal')
-require('plugins.autopair')
-require('plugins.blink')
-require('plugins.jdtls_config')
-require('plugins.fugitive_config')
-require('plugins.gitsigns_config')
-require('plugins.debug_config')
-require('plugins.debug_ui')
-require('plugins.yazi_config')
-require('plugins.indent')
-require('plugins.dadbod_config')
-require('plugins.dotenv')
-require('plugins.vivify')
-require('plugins.vimtex')
-require('plugins.lint')
-require('plugins.java_creator')
-
-
-
+-- Keep :source $MYVIMRC useful while still organizing the config as modules.
+package.loaded["config.shared"] = nil
+for _, module in ipairs(modules) do
+    package.loaded[module] = nil
+    require(module)
+end
